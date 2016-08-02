@@ -10,14 +10,15 @@
 <body>
 <!-- view add music link box -->
   <nav class="top">
-    <a href="#">View Music</a>
+    <!-- <a href="#" id="link-list">List Music</a>
+    <span> | </span> -->
+    <a href="#" id="link-add">Add Music</a>
     <span> | </span>
-    <a href="#">Add Music</a>
-    <span> | </span>
-    <a href="#">Profile</a>
+    <a href="#" id="link-home">Home</a>
   </nav>
 
 <!-- inputs -->
+  <div id="home-view" class="visible">
   <form class="left">
     <!-- slider bar -->
     <section>
@@ -71,7 +72,7 @@
 
 <!-- song names box-->
   <article class="right" id="songBox">
-    <!-- <section>
+<!--     <section>
       <label>Song Name</label>
       <ul>
         <li>Artist Name  |</li>
@@ -105,8 +106,24 @@
         <li>Album Name  |</li>
         <li>Genre</li>
       </ul>
-    </section>
-  </article> -->
+    </section> -->
+  </article>
+  </div>
+<!-- new section to add music-three input fields -->
+  <div id="add-view" class="hidden">
+    <label>Song Name:</label>
+    <input type="text" placeholder="song name" id="songName">
+    <br><br>
+    <label>Artist Name:</label>
+    <input type="text" placeholder="artist name" id="artistName">
+    <br><br>
+    <label>Album Name:</label>
+    <input type="text" placeholder="album name" id="albumName">
+    <br><br>
+    <button id="submitButton">Submit</button>
+  </div>
 <script type="text/javascript" src="songs.js"></script>
+<script type="text/javascript" src="home.js"></script>
+<script type="text/javascript" src="add.js"></script>
 </body>
 </html>

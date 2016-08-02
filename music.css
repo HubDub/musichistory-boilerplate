@@ -25,6 +25,7 @@ body {
   background-color: #4DD7FA;
   width: 30%;
   float: left;
+  display: inline-block;
   height: 300px;
 }
 
@@ -83,3 +84,23 @@ select {
   list-style-type: none;
   display: inline;
 }
+
+#add-view {
+  text-align: center;
+}
+
+#add-view input {
+  border: black solid 1px;
+}
+#add-view button {
+  border-radius: 5px;
+}
+/*to hide for the SPA*/
+/*this actually allows shown material to be displayed in the space instead of having a blank space for it*/
+.hidden {
+  display: none;
+}
+
+/*.visible {
+  display: block;
+}*/
