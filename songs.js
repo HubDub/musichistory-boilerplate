@@ -107,15 +107,16 @@ document.getElementById("submitButton").addEventListener("click", function (even
     console.log(songNameInput);
     console.log(artistNameInput);
     console.log(albumNameInput);
-    var newSong = (songNameInput + " - by " + artistNameInput + " on the album " + albumNameInput);
+    var newSong = {"songName": songNameInput, "artistName": artistNameInput, "albumName": albumNameInput};
     console.log(newSong);
     var songs = musicHistory.addSong(newSong);
     console.log(songs);
     var finalSongBox = document.getElementById("songBox");
     finalSongBox.innerHTML = " ";
-    for (i = 0; i < songs.length; i++) {
-      finalSongBox.innerHTML += `<p> ${songs[i]}   <button id="deleteButton">delete</button></p>`
-    };
+    // for (i = 0; i < songs.length; i++) {
+    songs.forEach (function(song) {
+      finalSongBox.innerHTML += `<p> ${song.songName} by ${song.artistName} on the album ${song.albumName}  <button id="deleteButton">delete</button></p>`
+    })
   document.getElementById("songName").value = "";
   document.getElementById("artistName").value = "";
   document.getElementById("albumName").value = "";
