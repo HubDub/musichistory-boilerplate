@@ -36,15 +36,22 @@
 var musicHistory = (function () {
   var songs = [];
   return {
-    getSongs: function (callback) {
+    loadSongs: function (callback) {
       var xhr = new XMLHttpRequest();
       xhr.open("GET", "music.json");
       xhr.addEventListener("load", function(evt) {
-        songs = JSON.parse(evt.target.responseText);
+        songs = JSON.parse(evt.target.responseText).songs;
         console.log(songs);
         callback(songs);
       });
     xhr.send();
+    },
+    getSongs: function () {
+      return songs
+    },
+    addSong: function (song) {
+      songs.push(song)
+      return songs
     }
   }
 }());
@@ -52,10 +59,13 @@ var musicHistory = (function () {
 function showSongs(songs) {
   console.log("showSongs is here")
   var finalSongBox = document.getElementById("songBox");
-  console.log(songs);
-  for (i = 0; i < songs.length; i++) {
-    finalSongBox.innerHTML += `<p> ${songs[i]}   <button id="deleteButton">delete</button></p>`
-  }
+  console.log("showsongs", songs);
+  // for (i = 0; i < songs.length; i++) {
+  songs.forEach (function(song) {
+    finalSongBox.innerHTML += `<p> ${song.songName} by ${song.artistName} on the album ${song.albumName}  <button id="deleteButton">delete</button></p>`
+  })
+}
+
 
 //end of pulling and displaying first load of songs
 
@@ -99,7 +109,7 @@ document.getElementById("submitButton").addEventListener("click", function (even
     console.log(albumNameInput);
     var newSong = (songNameInput + " - by " + artistNameInput + " on the album " + albumNameInput);
     console.log(newSong);
-    songs.push(newSong);
+    var songs = musicHistory.addSong(newSong);
     console.log(songs);
     var finalSongBox = document.getElementById("songBox");
     finalSongBox.innerHTML = " ";
@@ -110,10 +120,10 @@ document.getElementById("submitButton").addEventListener("click", function (even
   document.getElementById("artistName").value = "";
   document.getElementById("albumName").value = "";
   })
-};
+
 
 //call the first round of songs IIFE
-musicHistory.getSongs(showSongs);
+musicHistory.loadSongs(showSongs);
 
 //delete buttons on individual songs on list
 document.getElementById("songBox").addEventListener("click", function(event) {

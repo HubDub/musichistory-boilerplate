@@ -1,6 +1,24 @@
-[
-  "The Story - by Brandi Carlile on the album The Story",
-  "Legs - by ZZTop on the album Eliminator",
-  "The Logical Song - by Supertramp on the album Breakfast in America",
-  "Another Brick in the Wall - by Pink Floyd on the album The Wall"
-]
+{ "songs":
+  [
+    {
+    "songName": "The Story",
+    "artistName": "Brandi Carlile",
+    "albumName": "The Story"
+    },
+    {
+    "songName": "Legs",
+    "artistName": "ZZTop",
+    "albumName": "Eliminator"
+    },
+    {
+    "songName": "The Logical Song",
+    "artistName": "Supertramp",
+    "albumName": "Breakfast in America"
+    },
+    {
+    "songName": "Another Brick in the Wall",
+    "artistName": "Pink Floyd",
+    "albumName": "The Wall"
+    }
+  ]
+}
