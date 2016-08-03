@@ -32,6 +32,7 @@
 //or you can use .replace(/>/g, "-")
 //g is the global scope
 
+//IIFY to pull the first bunch of songs
 var musicHistory = (function () {
   var songs = [];
   return {
@@ -42,43 +43,91 @@ var musicHistory = (function () {
         songs = JSON.parse(evt.target.responseText);
         console.log(songs);
         callback(songs);
-      })
+      });
     xhr.send();
     }
   }
-}())
+}());
 
 function showSongs(songs) {
   console.log("showSongs is here")
   var finalSongBox = document.getElementById("songBox");
   console.log(songs);
   for (i = 0; i < songs.length; i++) {
-    finalSongBox.innerHTML += `<p> ${songs[i]}</p>`
+    finalSongBox.innerHTML += `<p> ${songs[i]}   <button id="deleteButton">delete</button></p>`
   }
 
-  document.getElementById("submitButton").addEventListener("click", function (event) {
-      console.log(event);
-      var songNameInput = document.getElementById("songName").value;
-      var artistNameInput = document.getElementById("artistName").value;
-      var albumNameInput = document.getElementById("albumName").value;
-      console.log(songNameInput);
-      console.log(artistNameInput);
-      console.log(albumNameInput);
-      var newSong = (songNameInput + " - by " + artistNameInput + " on the album " + albumNameInput);
-      console.log(newSong);
-      songs.push(newSong);
-      console.log(songs);
-      finalSongBox.innerHTML = " ";
-      for (i = 0; i < songs.length; i++) {
-        finalSongBox.innerHTML += `<p> ${songs[i]}</p>`
-      };
-    document.getElementById("songName").value = "";
-    document.getElementById("artistName").value = "";
-    document.getElementById("albumName").value = "";
-    })
-}
+//end of pulling and displaying first load of songs
 
+//pulling and displaying second load of songs
+
+// var musicHistory2 = (function () {
+//   var songs = [];
+//   return {
+//     getSongs2: function (callback) {
+//       var xhr = new XMLHttpRequest();
+//       xhr.open("GET", "music2.json");
+//       xhr.addEventListener("load", function(evt) {
+//         songs = JSON.parse(evt.target.responseText);
+//         console.log(songs);
+//         callback(songs);
+//       });
+//     xhr.send();
+//     }
+//   }
+// }());
+
+// function showSongs2(songs) {
+//   console.log("showSongs is here")
+//   var finalSongBox = document.getElementById("songBox");
+//   console.log("showSongs2", songs);
+//   for (i = 0; i < songs.length; i++) {
+//     finalSongBox.innerHTML += `<p> ${songs[i]}   <button id="deleteButton">delete</button></p>`
+//   }
+//   document.getElementById("submitButton").classList.add("hidden");
+// };
+//end of pulling and displaying 2nd load of songs
+
+//function for user to add songs
+document.getElementById("submitButton").addEventListener("click", function (event) {
+    console.log(event);
+    var songNameInput = document.getElementById("songName").value;
+    var artistNameInput = document.getElementById("artistName").value;
+    var albumNameInput = document.getElementById("albumName").value;
+    console.log(songNameInput);
+    console.log(artistNameInput);
+    console.log(albumNameInput);
+    var newSong = (songNameInput + " - by " + artistNameInput + " on the album " + albumNameInput);
+    console.log(newSong);
+    songs.push(newSong);
+    console.log(songs);
+    var finalSongBox = document.getElementById("songBox");
+    finalSongBox.innerHTML = " ";
+    for (i = 0; i < songs.length; i++) {
+      finalSongBox.innerHTML += `<p> ${songs[i]}   <button id="deleteButton">delete</button></p>`
+    };
+  document.getElementById("songName").value = "";
+  document.getElementById("artistName").value = "";
+  document.getElementById("albumName").value = "";
+  })
+};
+
+//call the first round of songs IIFE
 musicHistory.getSongs(showSongs);
 
+//delete buttons on individual songs on list
+document.getElementById("songBox").addEventListener("click", function(event) {
+  console.log(event);
+  if (event.target.id === "deleteButton") {
+    console.log("you've clicked delete button");
+    event.target.parentElement.remove();
+  }
+});
 
+//more songs button - fires second IIFE
+document.getElementById("moreSongs").addEventListener("click", function(event) {
+  console.log(event);
+  console.log("you clicked more songs");
+  // musicHistory2.getSongs2(showSongs2);
+})
 

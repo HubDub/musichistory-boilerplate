@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<!-- view add music link box -->
+        <!-- view add music link box -->
   <nav class="top">
     <!-- <a href="#" id="link-list">List Music</a>
     <span> | </span> -->
@@ -17,99 +17,103 @@
     <a href="#" id="link-home">Home</a>
   </nav>
 
-<!-- inputs -->
+          <!-- inputs -->
   <div id="home-view" class="visible">
-  <form class="left">
-    <!-- slider bar -->
-    <section>
-      <label>Song Length:</label><br>
-      <input type="range" name="length">
-    </section>
+    <form class="left">
+      <!-- slider bar -->
+      <section>
+        <label>Song Length:</label><br>
+        <input type="range" name="length">
+      </section>
 
-    <!-- artist drop down form -->
-    <section>
-      <label>Artist:</label>
-      <br>
-      <select name="artist">
-        <option value="davidgray">David Gray</option>
-        <option value="brandicarlile">Brandi Carlile</option>
-        <option value="mumford">Mumford and Sons</option>
-        <option value="imaginedragons">Imagine Dragons</option>
-        <option value="neildiamond">Neil Diamond</option>
-      </select>
-    </section>
+        <!-- artist drop down form -->
+      <section>
+        <label>Artist:</label>
+        <br>
+        <select name="artist">
+          <option value="davidgray">David Gray</option>
+          <option value="brandicarlile">Brandi Carlile</option>
+          <option value="mumford">Mumford and Sons</option>
+          <option value="imaginedragons">Imagine Dragons</option>
+          <option value="neildiamond">Neil Diamond</option>
+        </select>
+      </section>
 
-    <!-- Album drop down form -->
-    <section>
-      <label>Album:</label>
-      <br>
-      <select name="album">
-        <option value="whiteladder">White Ladder</option>
-        <option value="thestory">The Story</option>
-        <option value="sighnomore">Sigh No More</option>
-        <option value="nightvisions">Night Visions</option>
-        <option value="justforyou">Just For You</option>
-      </select>
-    </section>
+        <!-- Album drop down form -->
+      <section>
+        <label>Album:</label>
+        <br>
+        <select name="album">
+          <option value="whiteladder">White Ladder</option>
+          <option value="thestory">The Story</option>
+          <option value="sighnomore">Sigh No More</option>
+          <option value="nightvisions">Night Visions</option>
+          <option value="justforyou">Just For You</option>
+        </select>
+      </section>
 
-    <!-- genre checkbox -->
-    <section class="genreCheck">
-      <label>Genre:</label>
-      <ul>
-        <li><input type="checkbox" name="genre" value="rock">Rock</li>
-        <li><input type="checkbox" name="genre" value="pop">Pop</li>
-        <li><input type="checkbox" name="genre" value="blues">Blues</li>
-        <li><input type="checkbox" name="genre" value="classical">Classical</li>
-        <li><input type="checkbox" name="genre" value="Jazz">Jazz</li>
-        <li><input type="checkbox" name="genre" value="hiphop">Hip Hop</li>
-      </ul>
-    </section>
+        <!-- genre checkbox -->
+      <section class="genreCheck">
+        <label>Genre:</label>
+        <ul>
+          <li><input type="checkbox" name="genre" value="rock">Rock</li>
+          <li><input type="checkbox" name="genre" value="pop">Pop</li>
+          <li><input type="checkbox" name="genre" value="blues">Blues</li>
+          <li><input type="checkbox" name="genre" value="classical">Classical</li>
+          <li><input type="checkbox" name="genre" value="Jazz">Jazz</li>
+          <li><input type="checkbox" name="genre" value="hiphop">Hip Hop</li>
+        </ul>
+      </section>
 
-    <section class="filter">
-      <button>Filter</button>
-    </section>
-  </form>
+      <section class="filter">
+        <button>Filter</button>
+      </section>
+    </form>
 
-<!-- song names box-->
-  <article class="right" id="songBox">
-<!--     <section>
-      <label>Song Name</label>
-      <ul>
-        <li>Artist Name  |</li>
-        <li>Album Name  |</li>
-        <li>Genre</li>
-      </ul>
-    </section>
+      <!-- song list right box becomes where song names injected -->
 
-    <section>
-      <label>Song Name</label>
-      <ul>
-        <li>Artist Name  |</li>
-        <li>Album Name  |</li>
-        <li>Genre</li>
-      </ul>
-    </section>
+    <article class="right">
+      <div id="songBox">
+      <!--     <section>
+        <label>Song Name</label>
+        <ul>
+          <li>Artist Name  |</li>
+          <li>Album Name  |</li>
+          <li>Genre</li>
+        </ul>
+      </section>
 
-    <section>
-      <label>Song Name</label>
-      <ul>
-        <li>Artist Name  |</li>
-        <li>Album Name  |</li>
-        <li>Genre</li>
-      </ul>
-    </section>
+      <section>
+        <label>Song Name</label>
+        <ul>
+          <li>Artist Name  |</li>
+          <li>Album Name  |</li>
+          <li>Genre</li>
+        </ul>
+      </section>
 
-    <section>
-      <label>Song Name</label>
-      <ul>
-        <li>Artist Name  |</li>
-        <li>Album Name  |</li>
-        <li>Genre</li>
-      </ul>
-    </section> -->
-  </article>
+      <section>
+        <label>Song Name</label>
+        <ul>
+          <li>Artist Name  |</li>
+          <li>Album Name  |</li>
+          <li>Genre</li>
+        </ul>
+      </section>
+
+      <section>
+        <label>Song Name</label>
+        <ul>
+          <li>Artist Name  |</li>
+          <li>Album Name  |</li>
+          <li>Genre</li>
+        </ul>
+      </section> -->
+      </div>
+      <button id="moreSongs">More Songs</button>
+    </article>
   </div>
-<!-- new section to add music-three input fields -->
+      <!-- new section to add music-three input fields -->
   <div id="add-view" class="hidden">
     <label>Song Name:</label>
     <input type="text" placeholder="song name" id="songName">
