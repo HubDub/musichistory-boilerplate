@@ -1,38 +1,5 @@
-// var songs = [];
 
-// songs[songs.length] = "The Story > by Brandi Carlile on the album The Story";
-// songs[songs.length] = "Legs > by Z*ZTop on the album Eliminator";
-// songs[songs.length] = "The Logical Song > by Supertr@amp on the album Breakfast in America";
-// songs[songs.length] = "Another Brick in the Wall > by Pink Floyd on the album The Wall";
-// songs[songs.length] = "Welco(me to the Jungle > by Guns & Roses on the album Appetite for Destruction";
-// songs[songs.length] = "Ironi!c > by Alanis Moris*ette on the album Jagged Little Pill";
-// songs[songs.length] = "Run to the Hills > by Iron Maiden on the album The Number of the Beast";
-
-// var removeCharArray = [];
-// for (i = 0; i < songs.length; i++) {
-//   removeCharArray.push(songs[i].replace(/[^a-z0-9\s\>]/gi, ""))
-
-// }
-// console.log(removeCharArray);
-
-//or you could do
-//  songs[i] = songs.replace(">", "-");
-//for each item you don't like
-
-// removeChar.push(songs[i].replace(/[^a-z0-9\s\>]/gi, ""))
-
-// var finalSongBox = document.getElementById("songBox");
-// var finalSongArray = [];
-// for (i = 0; i < removeCharArray.length; i++) {
-//   finalSongArray.push(removeCharArray[i].replace(">", "-"));
-//     finalSongBox.innerHTML += `<p> ${finalSongArray[i]}</p>`
-// };
-// console.log(finalSongArray);
-
-//or you can use .replace(/>/g, "-")
-//g is the global scope
-
-//IIFY to pull the first bunch of songs
+//IIFY
 var musicHistory = (function () {
   var songs = [];
   return {
@@ -46,57 +13,69 @@ var musicHistory = (function () {
       });
     xhr.send();
     },
+     addSong: function (song) {
+      songs.push(song);
+      return songs;
+    },
     getSongs: function () {
       return songs
     },
-    addSong: function (song) {
-      songs.push(song)
-      return songs
-    }
+    // loadMoreSongs: function (callback) {
+    //   var xhr = new XMLHttpRequest();
+    //   xhr.open("GET", "music2.json");
+    //   xhr.addEventListener("load", function(evt) {
+    //     var songs2 = JSON.parse(evt.target.responseText).songs2;
+    //     console.log(songs2);
+
+    //     songs2.forEach(function (song) {
+    //       songs.push(song)
+    //     })
+
+    //     callback(songs);
+    //   });
+    // xhr.send();
+    // }
   }
 }());
+//this function augments the IIFE above. you could also make loadMoreSongs be a new function located within the musicHistory IIFE, but written like this it is an augmenting IIFE.
+var musicHistory = (function (mh) {
+  mh.loadMoreSongs = function (callback) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "music2.json");
+      xhr.addEventListener("load", function(evt) {
+        var newSongs = JSON.parse(evt.target.responseText).songs2;
+        console.log(newSongs);
+
+        newSongs.forEach(function (song) {
+          mh.addSong(song)
+        })
+
+        var allSongs = mh.getSongs()
+        callback(allSongs);
+      });
+    xhr.send();
+    }
+    return mh
+}(musicHistory));
 
 function showSongs(songs) {
   console.log("showSongs is here")
   var finalSongBox = document.getElementById("songBox");
   console.log("showsongs", songs);
+  var clearSongBox = document.getElementById("songBox");
+  clearSongBox.innerHTML = " ";
   // for (i = 0; i < songs.length; i++) {
   songs.forEach (function(song) {
     finalSongBox.innerHTML += `<p> ${song.songName} by ${song.artistName} on the album ${song.albumName}  <button id="deleteButton">delete</button></p>`
   })
 }
 
-
-//end of pulling and displaying first load of songs
-
-//pulling and displaying second load of songs
-
-// var musicHistory2 = (function () {
-//   var songs = [];
-//   return {
-//     getSongs2: function (callback) {
-//       var xhr = new XMLHttpRequest();
-//       xhr.open("GET", "music2.json");
-//       xhr.addEventListener("load", function(evt) {
-//         songs = JSON.parse(evt.target.responseText);
-//         console.log(songs);
-//         callback(songs);
-//       });
-//     xhr.send();
-//     }
-//   }
-// }());
-
-// function showSongs2(songs) {
-//   console.log("showSongs is here")
-//   var finalSongBox = document.getElementById("songBox");
-//   console.log("showSongs2", songs);
-//   for (i = 0; i < songs.length; i++) {
-//     finalSongBox.innerHTML += `<p> ${songs[i]}   <button id="deleteButton">delete</button></p>`
-//   }
-//   document.getElementById("submitButton").classList.add("hidden");
-// };
-//end of pulling and displaying 2nd load of songs
+//more songs button - fires second function to get 2nd json
+document.getElementById("moreSongs").addEventListener("click", function(event) {
+  console.log(event);
+  console.log("you clicked more songs");
+  musicHistory.loadMoreSongs(showSongs);
+});
 
 //function for user to add songs
 document.getElementById("submitButton").addEventListener("click", function (event) {
@@ -123,7 +102,7 @@ document.getElementById("submitButton").addEventListener("click", function (even
   })
 
 
-//call the first round of songs IIFE
+//call the first round of songs IIFE - fires as page loads
 musicHistory.loadSongs(showSongs);
 
 //delete buttons on individual songs on list
@@ -135,10 +114,4 @@ document.getElementById("songBox").addEventListener("click", function(event) {
   }
 });
 
-//more songs button - fires second IIFE
-document.getElementById("moreSongs").addEventListener("click", function(event) {
-  console.log(event);
-  console.log("you clicked more songs");
-  // musicHistory2.getSongs2(showSongs2);
-})
 

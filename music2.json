@@ -1,6 +1,24 @@
-[
-"Welcome to the Jungle - by Guns & Roses on the album Appetite for Destruction",
-  "Ironic - by Alanis Morisette on the album Jagged Little Pill",
-  "Run to the Hills - by Iron Maiden on the album The Number of the Beast",
-  "Home - by Michael Buble on the album It's Time"
-]
+{ "songs2":
+  [
+    {
+    "songName": "Welcome to the Jungle",
+    "artistName": "Guns & Roses",
+    "albumName": "Appetite for Destruction"
+    },
+    {
+    "songName": "Ironic",
+    "artistName": "Alanis Morisette",
+    "albumName": "Jagged Little Pill"
+    },
+    {
+    "songName": "Run to the Hills",
+    "artistName": "Iron Maiden",
+    "albumName": "The Number of the Beast"
+    },
+    {
+    "songName": "Home",
+    "artistName": "Michael Buble",
+    "albumName": "It's Time"
+    }
+  ]
+}
