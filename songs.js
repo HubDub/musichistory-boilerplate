@@ -3,17 +3,14 @@
 var musicHistory = (function () {
   var songs = [];
   return {
-    loadSongs: function (callback) {
-      var xhr = new XMLHttpRequest();
-      xhr.open("GET", "music.json");
-      xhr.addEventListener("load", function(evt) {
-        songs = JSON.parse(evt.target.responseText).songs;
-        console.log(songs);
-        callback(songs);
+    loadSongs: function () {
+      $.ajax({
+      url: 'https://music-history-ce03d.firebaseio.com/songs.json',
+      }).done(function(songData) {
+        showSongs(songData);
       });
-    xhr.send();
     },
-     addSong: function (song) {
+    addSong: function (song) {
       songs.push(song);
       return songs;
     },
@@ -64,10 +61,11 @@ function showSongs(songs) {
   console.log("showsongs", songs);
   var clearSongBox = document.getElementById("songBox");
   clearSongBox.innerHTML = " ";
-  // for (i = 0; i < songs.length; i++) {
-  songs.forEach (function(song) {
-    finalSongBox.innerHTML += `<p> ${song.songName} by ${song.artistName} on the album ${song.albumName}  <button id="deleteButton">delete</button></p>`
-  })
+  for (var key in songs) {
+    console.log(songs[key])
+    console.log(songs[key].albumName)
+    finalSongBox.innerHTML += `<p> ${songs[key].songName} by ${songs[key].artistName} on the album ${songs[key].albumName}  <button id="deleteButton">delete</button></p>`
+  }
 }
 
 //more songs button - fires second function to get 2nd json
